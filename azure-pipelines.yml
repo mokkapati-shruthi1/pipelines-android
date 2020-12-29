@@ -33,10 +33,16 @@ steps:
     artifactType: 'container'
   displayName: Publish artifacts
   
+- task: DownloadSecureFile@1
+  name: mySecureFile # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
+  inputs:
+    secureFile: api-8006220769294135392-953327-b00b09f1271e.json # The file name or GUID of the secure file
+    #retryCount: 5 # Optional
+  
 - task: GooglePlayRelease@3
   inputs:
     authType: 'JsonFile'
-    serviceAccountKey: '$(build.artifactStagingDirectory)'
+    serviceAccountKey: '$(Agent.TempDirectory)/api-8006220769294135392-953327-b00b09f1271e.json'
     apkFile: '**/*.apk'
     track: 'internal'
     
