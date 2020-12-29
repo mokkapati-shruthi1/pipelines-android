@@ -32,3 +32,8 @@ steps:
     artifactName: 'drop'
     artifactType: 'container'
   displayName: Publish artifacts
+  - task: GooglePlayRelease@3
+    inputs:
+      authType: 'JsonFile'
+      apkFile: '**/*.apk'
+      track: 'internal'
