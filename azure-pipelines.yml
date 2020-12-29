@@ -35,7 +35,10 @@ steps:
   
 - task: GooglePlayRelease@3
   inputs:
+- task: GooglePlayRelease@3
+  inputs:
     authType: 'JsonFile'
-    serviceAccountKey: '*.json'
+    serviceAccountKey: '$(System.DefaultWorkingDirectory)'
     apkFile: '**/*.apk'
     track: 'internal'
+    
