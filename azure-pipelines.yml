@@ -19,6 +19,7 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug test'
   displayName: gradlew assembleDebug test
+  
 
 - task: CopyFiles@2
   inputs:
@@ -26,6 +27,15 @@ steps:
     targetFolder: '$(build.artifactStagingDirectory)'
   displayName: Copy .apk files to artifact staging directory
 
+- task: AndroidSigning@2
+  inputs:
+    apkFiles: '**/*.apk'
+    jarsign: true
+    jarsignerKeystoreFile: 'pathToYourKeystoreFile'
+    jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
+    jarsignerKeystoreAlias: 'yourKeystoreAlias'
+    jarsignerKeyPassword: '$(jarsignerKeyPassword)'
+    zipalign: true
 - task: PublishBuildArtifacts@1
   inputs:
     pathToPublish: '$(build.artifactStagingDirectory)'
