@@ -42,5 +42,6 @@ steps:
 - task: GooglePlayRelease@3
   inputs:
     authType: 'JsonFile'
-    apkFile: '**/*.apk'
+    serviceAccountKey: '**/*.json'
+    apkFile: 
     track: 'internal'
